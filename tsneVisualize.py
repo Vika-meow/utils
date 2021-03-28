@@ -32,7 +32,7 @@ def tsne_plot_2d(label, embeddings, words=[], a=1, cat_col=[]):
     plt.show()
 
 def visualize(vec_file = "out_ae.npy", cat_file = ""):
-    vectors = np.load("out_ae.npy")
+    vectors = np.load(vec_file)
     print('loaded vectors...')
     dic = []
     i = 0
@@ -40,7 +40,7 @@ def visualize(vec_file = "out_ae.npy", cat_file = ""):
     norm = mpl.colors.Normalize(vmin=-20, vmax=10)
     cmap = cm.hot
     m = cm.ScalarMappable(norm=norm, cmap=cmap)
-    with open("out_categories", "r") as cat_file:
+    with open(cat_file, "r") as cat_file:
         for line in cat_file:
             dic.append(m.to_rgba(int(line)))
     #dic_1 = loadIds("data/ru_en/ent_ids_1")
