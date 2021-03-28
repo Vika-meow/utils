@@ -13,9 +13,9 @@ print("start loading categories")
 with open(args.categories, encoding='utf-8') as cat_file:
     for line in cat_file:
         triple = line[:-1].split(' ')
-        if triple[0] not in ent_cat:
-            ent_cat[triple[0]] = set()
-        ent_cat[triple[0]].add(triple[2])
+        if triple[0][1:-1] not in ent_cat:
+            ent_cat[triple[0][1:-1]] = set()
+        ent_cat[triple[0][1:-1]].add(triple[2])
 print("categories loaded")
 
 ent_cat_less = dict()
@@ -23,7 +23,7 @@ counter = 1
 print("start load entities")
 with open(args.file, encoding='utf-8') as f:
     for line in f:
-        ent = line[:-1].split(' ')[0]
+        ent = line[:-1].split('\t')[0]
         if ent in ent_cat:
             ent_cat_less[ent] = ent_cat[ent]
         else:
@@ -42,11 +42,15 @@ for x in ent_cat_less.values():
             if cat in x:
                 x.update(y)
 
-#for x, y in ent_cat_less.items():
-#    el = ""
-#    for e in y:
-#        el += e + " "
-#    print(x + ' ' + el)
+i = 0
+for x, y in ent_cat_less.items():
+    el = ""
+    for e in y:
+        el += e + " "
+    print(x + ' ' + el)
+    i += 1
+    if(i > 10):
+        break
 
 # теперь собранным категориям присваиваем айди
 for x in ent_cat_less.values():
