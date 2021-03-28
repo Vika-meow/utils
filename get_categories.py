@@ -36,8 +36,7 @@ with open(args.file, encoding='utf-8') as f:
             ent_cat_less[ent] = ent_cat[ent]
         else:
             ent_cat_less[ent] = set()
-print_dict_with_set(ent_cat)
-print_dict_with_set(ent_cat_less)
+
 ent_cat.clear()
 print("entities loaded")
 categories = dict()
@@ -57,8 +56,8 @@ for x in ent_cat_less.values():
     if flag == 0:
         counter += 1
         categories[counter] = x
+        print(str(counter))
     flag = 0
-    print(str(counter))
 
 print("end collect categories")
 #print_dict_with_set(categories)
