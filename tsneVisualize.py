@@ -35,16 +35,17 @@ def visualize(vec_file = "out_ae.npy", cat_file = ""):
     vectors = np.load(vec_file)
     print('loaded vectors... num = ' + str(len(vectors)))
     dic = []
-    i = 0
-
+    result = []
     norm = mpl.colors.Normalize(vmin=-20, vmax=10)
     cmap = cm.hot
     m = cm.ScalarMappable(norm=norm, cmap=cmap)
     with open(cat_file, "r") as cat_file:
         for line in cat_file:
             dic.append(m.to_rgba(int(line)))
-        for line in cat_file:
-            dic.append(m.to_rgba(int(line)))
+    for el in dic:
+        result.append(el)
+    for el in dic:
+        result.append(el)
     #dic_1 = loadIds("data/ru_en/ent_ids_1")
     #dic_2 = loadIds("data/ru_en/ent_ids_2")
     #dic_1.update(dic_2)
@@ -60,7 +61,7 @@ def visualize(vec_file = "out_ae.npy", cat_file = ""):
     print('set settings for TSNE')
     embeddings_ak_2d = tsne_ak_2d.fit_transform(embeddings)
     print('get new embeddings in 2dims')
-    tsne_plot_2d('visualize', embeddings_ak_2d, words, a=0.1, cat_col=dic)
+    tsne_plot_2d('visualize', embeddings_ak_2d, words, a=0.1, cat_col=result)
 
 def main():
     parser = argparse.ArgumentParser(description='Vizualize with TSNE')
