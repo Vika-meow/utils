@@ -38,7 +38,7 @@ with open(args.file, encoding='utf-8') as f:
             ent_cat_less[ent] = set()
 
 ent_cat.clear()
-print("entities loaded")
+print("entities loaded + " + str(len(ent_cat_less)))
 categories = dict()
 counter = 0
 flag = 0
