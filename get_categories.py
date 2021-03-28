@@ -79,6 +79,7 @@ with open(args.output, 'w+') as out:
         else:
             out.write(str(0) + '\n')
             #out.write(key + '\t' + str(0) + '\n')
+        flag = 0
 print("end writing file")
 '''
 print("start collect categories for each entity")
