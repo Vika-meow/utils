@@ -56,21 +56,26 @@ for x in ent_cat_less.values():
     if flag == 0:
         counter += 1
         categories[counter] = x
-        print(str(counter))
+        #print(str(counter))
     flag = 0
 
-print("end collect categories")
+print("end collect categories ents_num = " + str(len(ent_cat_less)) + " cats_num = " + str(len(categories)))
 #print_dict_with_set(categories)
 print("start writing file")
+flag = 0
 with open(args.output, 'w+') as out:
     for key, values in ent_cat_less.items():
         if len(values) != 0:
             for num, cats in categories.items():
                 for val in values:
                     if val in cats:
-                        out.write(str(num) + '\n')
+                        if flag != 1:
+                            out.write(str(num) + '\n')
+                            flag = 1
                         #out.write(key + '\t' + str(num) + '\n')
                         break
+                if flag == 1:
+                    break
         else:
             out.write(str(0) + '\n')
             #out.write(key + '\t' + str(0) + '\n')
