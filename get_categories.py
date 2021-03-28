@@ -35,6 +35,7 @@ categories = dict()
 counter = 0
 flag = 0
 
+print("start collect categories for each entity")
 # для каждого элемента собираем категории, которые используются вместе
 for x in ent_cat_less.values():
     for y in ent_cat_less.values():
@@ -52,6 +53,8 @@ for x, y in ent_cat_less.items():
     if(i > 10):
         break
 
+print("end collect categories for each entity")
+print("start id-category")
 # теперь собранным категориям присваиваем айди
 for x in ent_cat_less.values():
     for z in categories.values():
@@ -65,6 +68,8 @@ for x in ent_cat_less.values():
         categories[counter] = x
     flag = 0
 
+print("end id-category")
+print("start writing file")
 with open(args.output, 'w+') as out:
     for key, values in ent_cat_less.items():
         if len(values) != 0:
@@ -77,10 +82,10 @@ with open(args.output, 'w+') as out:
         else:
             out.write(str(0) + '\n')
             #out.write(key + '\t' + str(0) + '\n')
-
-with open(args.meta, 'w+') as out:
-    for x, y in categories.items():
-        el = ""
-        for e in y:
-            el += e + " "
-        out.write(str(x) + ' ' + el + '\n')
+print("end writing file")
+#with open(args.meta, 'w+') as out:
+#    for x, y in categories.items():
+#        el = ""
+#        for e in y:
+#            el += e + " "
+#        out.write(str(x) + ' ' + el + '\n')
