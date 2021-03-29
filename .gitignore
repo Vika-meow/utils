@@ -3,5 +3,6 @@ kg1_ent_ids
 out_categories
 meta_categories
 out_ae.npy
+visualize.png
 venv/
 .idea/
