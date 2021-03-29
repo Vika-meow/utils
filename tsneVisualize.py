@@ -17,14 +17,13 @@ def loadIds(fn):
 def tsne_plot_2d(label, embeddings, words=[], a=1, cat_col=[]):
     print('start configure plot')
     plt.figure(figsize=(16, 9))
-    colors = cm.rainbow(np.linspace(0, 1, 1))
     x = embeddings[:,0]
     y = embeddings[:,1]
-    plt.scatter(x, y, c=cat_col, alpha=a, label=label)
+    plt.scatter(x, y, c=cat_col, alpha=0.5)
     print('start annotate')
-    for i, word in enumerate(words):
-        plt.annotate(word, alpha=0.3, xy=(x[i], y[i]), xytext=(5, 2),
-                     textcoords='offset points', ha='right', va='bottom', size=10)
+    #for i, word in enumerate(words):
+    #    plt.annotate(word, alpha=0.3, xy=(x[i], y[i]), xytext=(5, 2),
+    #                 textcoords='offset points', ha='right', va='bottom', size=10)
     print('end annotate')
     plt.legend(loc=4)
     plt.grid(True)
@@ -41,11 +40,14 @@ def visualize(vec_file = "out_ae.npy", cat_file = ""):
     m = cm.ScalarMappable(norm=norm, cmap=cmap)
     with open(cat_file, "r") as cat_file:
         for line in cat_file:
-            dic.append(m.to_rgba(int(line)))
+            dic.append(int(line))
+    i = 0
     for el in dic:
         result.append(el)
-    for el in dic:
-        result.append(el)
+    print(result)
+    #for el in dic:
+    #    result.append(el)
+    print("colors generated...")
     #dic_1 = loadIds("data/ru_en/ent_ids_1")
     #dic_2 = loadIds("data/ru_en/ent_ids_2")
     #dic_1.update(dic_2)
