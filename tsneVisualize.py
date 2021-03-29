@@ -44,9 +44,9 @@ def visualize(vec_file = "out_ae.npy", cat_file = ""):
     i = 0
     for el in dic:
         result.append(el)
-    print(result)
-    #for el in dic:
-    #    result.append(el)
+    #print(result)
+    for el in dic:
+        result.append(el)
     print("colors generated...")
     #dic_1 = loadIds("data/ru_en/ent_ids_1")
     #dic_2 = loadIds("data/ru_en/ent_ids_2")
