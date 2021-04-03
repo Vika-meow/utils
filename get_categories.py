@@ -1,9 +1,5 @@
 import argparse
 
-################
-# ONLY PYTHON2 #
-################
-
 def print_dict_with_set(dic=dict()):
     for x, y in dic.items():
         el = ""
@@ -102,7 +98,7 @@ with open(args.output, 'w+') as out:
 print("categories write in " + args.file)
 
 with open(args.meta, 'w+') as out:
-    for k, v in categories:
+    for k, v in categories.items():
         el = ""
         for z in v:
             el += z + " "
