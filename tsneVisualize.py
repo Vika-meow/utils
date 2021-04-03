@@ -48,6 +48,11 @@ def visualize(vec_file = "out_ae.npy", cat_file = "", name = "visualize"):
         for el in dic:
             result.append(el)
         print("colors generated...")
+    else:
+        for i in range(len(vectors) // 2):
+            result.append(100)
+        for i in range(len(vectors) // 2):
+            result.append(200)
     #dic_1 = loadIds("data/ru_en/ent_ids_1")
     #dic_2 = loadIds("data/ru_en/ent_ids_2")
     #dic_1.update(dic_2)
@@ -68,7 +73,7 @@ def visualize(vec_file = "out_ae.npy", cat_file = "", name = "visualize"):
 def main():
     parser = argparse.ArgumentParser(description='Vizualize with TSNE')
     parser.add_argument('-f', '--file', help='Entities file', default="out_ae.npy")
-    parser.add_argument('-c', '--categories', help='Categories file', default="out_categories")
+    parser.add_argument('-c', '--categories', help='Categories file', default="")
     parser.add_argument('-n', '--name', help='Output name', default="visualize")
     args = parser.parse_args()
     visualize(vec_file=args.file, cat_file=args.categories, name = args.name)
