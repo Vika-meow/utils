@@ -63,12 +63,12 @@ delete_keys = set()
 for n, x in categories.items():
     if n not in delete_keys:
         for k, y in categories.items():
-            for cat in y:
-                if cat in x:
-                    x.update(y)
-                    delete_keys.add(k)
-                    break
-    print(n)
+            if k != n:
+                for cat in y:
+                    if cat in x:
+                        x.update(y)
+                        delete_keys.add(k)
+                        break
 
 for k in delete_keys:
     del categories[k]
@@ -87,13 +87,13 @@ with open(args.output, 'w+') as out:
                             if flag != 1:
                                 out.write(str(num) + '\n')
                                 flag = 1
-                            test.write(key + '\t' + str(num) + '\n')
+                            #test.write(key + '\t' + str(num) + '\n')
                             break
                     if flag == 1:
                         break
             else:
                 out.write(str(0) + '\n')
-                test.write(key + '\t' + str(0) + '\n')
+                #test.write(key + '\t' + str(0) + '\n')
             flag = 0
 print("categories write in " + args.file)
 
@@ -102,7 +102,7 @@ with open(args.meta, 'w+') as out:
         el = ""
         for z in v:
             el += z + " "
-        out.write(str(k) + " " + el)
+        out.write(str(k) + " " + el + '\n')
 print("categories meta write in " + args.meta)
 '''
 print("start collect categories for each entity")
