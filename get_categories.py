@@ -63,14 +63,14 @@ for x in ent_cat_less.values():
     flag = 0
 print("firstly categories collected ents_num = " + str(len(ent_cat_less)) + " cats_num = " + str(len(categories)))
 
-delete_keys = []
+delete_keys = set()
 for n, x in categories.items():
     if n not in delete_keys:
         for k, y in categories.items():
             for cat in y:
                 if cat in x:
                     x.update(y)
-                    delete_keys.append(k)
+                    delete_keys.add(k)
                     break
     print(n)
 
