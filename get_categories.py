@@ -1,5 +1,8 @@
 import argparse
 
+################
+# ONLY PYTHON2 #
+################
 
 def print_dict_with_set(dic=dict()):
     for x, y in dic.items():
@@ -59,28 +62,44 @@ for x in ent_cat_less.values():
         #print(str(counter))
     flag = 0
 
+for x in categories.values():
+    for k, y in categories.items():
+        for cat in x:
+            if cat in y:
+                x.update(y)
+                del categories[k]
+
 print("end collect categories ents_num = " + str(len(ent_cat_less)) + " cats_num = " + str(len(categories)))
 #print_dict_with_set(categories)
 print("start writing file")
 flag = 0
 with open(args.output, 'w+') as out:
-    for key, values in ent_cat_less.items():
-        if len(values) != 0:
-            for num, cats in categories.items():
-                for val in values:
-                    if val in cats:
-                        if flag != 1:
-                            out.write(str(num) + '\n')
-                            flag = 1
-                        #out.write(key + '\t' + str(num) + '\n')
+    with open("test", 'w+') as test:
+        for key, values in ent_cat_less.items():
+            if len(values) != 0:
+                for num, cats in categories.items():
+                    for val in values:
+                        if val in cats:
+                            if flag != 1:
+                                out.write(str(num) + '\n')
+                                flag = 1
+                            test.write(key + '\t' + str(num) + '\n')
+                            break
+                    if flag == 1:
                         break
-                if flag == 1:
-                    break
-        else:
-            out.write(str(0) + '\n')
-            #out.write(key + '\t' + str(0) + '\n')
-        flag = 0
-print("end writing file")
+            else:
+                out.write(str(0) + '\n')
+                test.write(key + '\t' + str(0) + '\n')
+            flag = 0
+print("categories write in " + args.file)
+
+with open(args.meta, 'w+') as out:
+    for k, v in categories:
+        el = ""
+        for z in v:
+            el += z + " "
+        out.write(str(k) + " " + el)
+print("categories meta write in " + args.meta)
 '''
 print("start collect categories for each entity")
 # для каждого элемента собираем категории, которые используются вместе

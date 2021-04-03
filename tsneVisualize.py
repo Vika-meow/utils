@@ -30,24 +30,24 @@ def tsne_plot_2d(label, embeddings, words=[], a=1, cat_col=[]):
     plt.savefig(label+".png", format='png', dpi=150, bbox_inches='tight')
     plt.show()
 
-def visualize(vec_file = "out_ae.npy", cat_file = ""):
+def visualize(vec_file = "out_ae.npy", cat_file = "", name = "visualize"):
     vectors = np.load(vec_file)
     print('loaded vectors... num = ' + str(len(vectors)))
     dic = []
     result = []
-    norm = mpl.colors.Normalize(vmin=-20, vmax=10)
-    cmap = cm.hot
-    m = cm.ScalarMappable(norm=norm, cmap=cmap)
-    with open(cat_file, "r") as cat_file:
-        for line in cat_file:
-            dic.append(int(line))
-    i = 0
-    for el in dic:
-        result.append(el)
-    #print(result)
-    for el in dic:
-        result.append(el)
-    print("colors generated...")
+    if cat_file != "":
+        norm = mpl.colors.Normalize(vmin=-20, vmax=10)
+        cmap = cm.hot
+        m = cm.ScalarMappable(norm=norm, cmap=cmap)
+        with open(cat_file, "r") as cat_file:
+            for line in cat_file:
+                dic.append(int(line))
+        i = 0
+        for el in dic:
+            result.append(el)
+        for el in dic:
+            result.append(el)
+        print("colors generated...")
     #dic_1 = loadIds("data/ru_en/ent_ids_1")
     #dic_2 = loadIds("data/ru_en/ent_ids_2")
     #dic_1.update(dic_2)
@@ -63,14 +63,15 @@ def visualize(vec_file = "out_ae.npy", cat_file = ""):
     print('set settings for TSNE')
     embeddings_ak_2d = tsne_ak_2d.fit_transform(embeddings)
     print('get new embeddings in 2dims')
-    tsne_plot_2d('visualize', embeddings_ak_2d, words, a=0.1, cat_col=result)
+    tsne_plot_2d(name, embeddings_ak_2d, words, a=0.1, cat_col=result)
 
 def main():
     parser = argparse.ArgumentParser(description='Vizualize with TSNE')
     parser.add_argument('-f', '--file', help='Entities file', default="out_ae.npy")
     parser.add_argument('-c', '--categories', help='Categories file', default="out_categories")
+    parser.add_argument('-n', '--name', help='Output name', default="visualize")
     args = parser.parse_args()
-    visualize(vec_file=args.file, cat_file=args.categories)
+    visualize(vec_file=args.file, cat_file=args.categories, name = args.name)
 
 if __name__ == "__main__":
     main()
