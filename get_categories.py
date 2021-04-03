@@ -61,15 +61,20 @@ for x in ent_cat_less.values():
         categories[counter] = x
         #print(str(counter))
     flag = 0
+print("firstly categories collected ents_num = " + str(len(ent_cat_less)) + " cats_num = " + str(len(categories)))
 
-for x in categories.values():
+delete_keys = []
+for x in list(categories.values()):
     for k, y in categories.items():
         for cat in x:
             if cat in y:
                 x.update(y)
-                del categories[k]
+                delete_keys.append(k)
 
-print("end collect categories ents_num = " + str(len(ent_cat_less)) + " cats_num = " + str(len(categories)))
+for k in delete_keys:
+    del categories[k]
+
+print("end collect categories cats_num = " + str(len(categories)))
 #print_dict_with_set(categories)
 print("start writing file")
 flag = 0
