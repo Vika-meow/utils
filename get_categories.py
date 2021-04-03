@@ -65,12 +65,13 @@ print("firstly categories collected ents_num = " + str(len(ent_cat_less)) + " ca
 
 delete_keys = []
 for n, x in categories.items():
-    for k, y in categories.items():
-        for cat in y:
-            if cat in x:
-                x.update(y)
-                delete_keys.append(k)
-                break
+    if n not in delete_keys:
+        for k, y in categories.items():
+            for cat in y:
+                if cat in x:
+                    x.update(y)
+                    delete_keys.append(k)
+                    break
     print(n)
 
 for k in delete_keys:
