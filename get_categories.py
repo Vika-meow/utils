@@ -44,19 +44,20 @@ flag = 0
 
 print("start collect categories")
 for x in ent_cat_less.values():
-    for y in categories.values():
-        for cat in x:
-            if cat in y:
-                flag = 1
-                y.update(x)
+    if len(x) != 0:
+        for y in categories.values():
+            for cat in x:
+                if cat in y:
+                    flag = 1
+                    y.update(x)
+                    break
+            if flag == 1:
                 break
-        if flag == 1:
-            break
-    if flag == 0:
-        counter += 1
-        categories[counter] = x
-        #print(str(counter))
-    flag = 0
+        if flag == 0:
+            counter += 1
+            categories[counter] = x
+            #print(str(counter))
+        flag = 0
 print("firstly categories collected ents_num = " + str(len(ent_cat_less)) + " cats_num = " + str(len(categories)))
 
 delete_keys = set()
@@ -72,6 +73,7 @@ for n, x in categories.items():
 
 for k in delete_keys:
     del categories[k]
+
 
 print("end collect categories cats_num = " + str(len(categories)))
 #print_dict_with_set(categories)
