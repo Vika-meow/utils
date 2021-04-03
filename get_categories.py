@@ -70,6 +70,7 @@ for x in list(categories.values()):
             if cat in x:
                 x.update(y)
                 delete_keys.append(k)
+                break
 
 for k in delete_keys:
     del categories[k]
