@@ -3,7 +3,11 @@ from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import matplotlib as mpl
+from matplotlib.lines import Line2D
 import argparse
+
+color_en = "#001eff"
+color_ru = "#ff0000"
 
 def loadIds(fn):
     pair = dict()
@@ -19,13 +23,16 @@ def tsne_plot_2d(label, embeddings, words=[], a=1, cat_col=[]):
     plt.figure(figsize=(16, 9))
     x = embeddings[:,0]
     y = embeddings[:,1]
-    plt.scatter(x, y, c=cat_col, alpha=0.5, s = 1)
+    plt.scatter(x, y, c=cat_col, alpha=0.5, s = 10)
     print('start annotate')
     #for i, word in enumerate(words):
     #    plt.annotate(word, alpha=0.3, xy=(x[i], y[i]), xytext=(5, 2),
     #                 textcoords='offset points', ha='right', va='bottom', size=10)
     print('end annotate')
-    plt.legend(loc=4)
+    legend_elements = [Line2D([0], [0], marker='o', color=color_en, label='en'),
+                       Line2D([0], [0], marker='o', color=color_ru, label='ru')]
+    plt.legend(handles=legend_elements, loc=4)
+    #plt.legend(loc=4)
     plt.grid(True)
     plt.savefig(label+".png", format='png', dpi=150, bbox_inches='tight')
     plt.show()
@@ -50,9 +57,9 @@ def visualize(vec_file = "out_ae.npy", cat_file = "", name = "visualize"):
         print("colors generated...")
     else:
         for i in range(len(vectors) // 2):
-            result.append(100)
+            result.append(color_en)
         for i in range(len(vectors) // 2):
-            result.append(200)
+            result.append(color_ru)
     #dic_1 = loadIds("data/ru_en/ent_ids_1")
     #dic_2 = loadIds("data/ru_en/ent_ids_2")
     #dic_1.update(dic_2)
