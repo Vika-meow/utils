@@ -57,8 +57,8 @@ def visualize(vec_file = "out_ae.npy", cat_file = "", name = "visualize"):
         i = 0
         for el in dic:
             result.append(el)
-        #for el in dic:
-        #    result.append(el)
+        for el in dic:
+            result.append(el)
         print("colors generated...")
     else:
         for i in range(len(vectors) // 2):
