@@ -22,10 +22,9 @@ print("start loading categories")
 with open(args.categories, encoding='utf-8') as cat_file:
     for line in cat_file:
         triple = line[:-1].split(' ')
-        if "Living_people" not in triple[2]:
-            if triple[0][1:-1] not in ent_cat:
-                ent_cat[triple[0][1:-1]] = set()
-            ent_cat[triple[0][1:-1]].add(triple[2])
+        if triple[0][1:-1] not in ent_cat:
+            ent_cat[triple[0][1:-1]] = set()
+        ent_cat[triple[0][1:-1]].add(triple[2])
 print("categories loaded")
 
 ent_cat_less = dict()

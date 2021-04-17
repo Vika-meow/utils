@@ -23,7 +23,7 @@ def tsne_plot_2d(label, embeddings, words=[], a=1, cat_col=[]):
     plt.figure(figsize=(16, 9))
     x = embeddings[:,0]
     y = embeddings[:,1]
-    plt.scatter(x, y, c=cat_col, alpha=0.5, s = 10)
+    plt.scatter(x, y, c=cat_col, s = 100)
     print('start annotate')
     #for i, word in enumerate(words):
     #    plt.annotate(word, alpha=0.3, xy=(x[i], y[i]), xytext=(5, 2),
@@ -43,17 +43,22 @@ def visualize(vec_file = "out_ae.npy", cat_file = "", name = "visualize"):
     dic = []
     result = []
     if cat_file != "":
-        norm = mpl.colors.Normalize(vmin=-20, vmax=10)
+        norm = mpl.colors.Normalize(vmin=0, vmax=750)
         cmap = cm.hot
         m = cm.ScalarMappable(norm=norm, cmap=cmap)
         with open(cat_file, "r") as cat_file:
             for line in cat_file:
-                dic.append(int(line))
+                cat_num = int(line)
+                if cat_num != 147:
+                    dic.append(m.to_rgba(int(line)))
+                else:
+                    dic.append((0,0,0,0))
+
         i = 0
         for el in dic:
             result.append(el)
-        for el in dic:
-            result.append(el)
+        #for el in dic:
+        #    result.append(el)
         print("colors generated...")
     else:
         for i in range(len(vectors) // 2):

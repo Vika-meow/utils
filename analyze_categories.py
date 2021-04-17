@@ -1,13 +1,5 @@
 import argparse
 
-def print_dict_with_set(dic=dict()):
-    for x, y in dic.items():
-        el = ""
-        for z in y:
-            el += z + " "
-        print(str(x) + " " + el)
-
-
 parser = argparse.ArgumentParser(description='Get pair entity-category')
 parser.add_argument('-f', '--file', help='Entities file', default="kg1_ent_ids")
 parser.add_argument('-c', '--categories', help='Categories file', default="article_categories_en.ttl")
