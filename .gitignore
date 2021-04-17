@@ -1,4 +1,5 @@
 article_categories_en.ttl
+article_*
 kg1_ent_ids
 out_categories
 meta_categories
@@ -7,3 +8,5 @@ visualize.png
 test
 venv/
 .idea/
+*.png
+
