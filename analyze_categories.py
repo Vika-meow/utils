@@ -28,7 +28,7 @@ ent_cat_less = dict()
 print("start load entities")
 with open(args.file, encoding='utf-8') as f:
     for line in f:
-        ent = line[:-1].split(' ')[0]
+        ent = line[:-1].split('\t')[0]
         if ent in ent_cat:
             ent_cat_less[ent] = ent_cat[ent]
         else:
