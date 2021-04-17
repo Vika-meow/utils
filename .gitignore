@@ -2,6 +2,7 @@ article_categories_en.ttl
 article_*
 kg1_ent_ids
 out_categories
+category_counter
 meta_*
 out_ae.npy
 visualize.png
