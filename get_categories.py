@@ -14,6 +14,7 @@ parser.add_argument('-c', '--categories', help='Categories file', default="artic
 parser.add_argument('-l', '--language', help='Language of categories', default="en")
 parser.add_argument('-o', '--output', help='Output file', default="out_categories")
 parser.add_argument('-m', '--meta', help='Meta info about categories', default="meta_categories")
+parser.add_argument('-mm', '--metameta', help='Meta info about meta files', default="meta_meta")
 args = parser.parse_args()
 
 ent_cat = dict()
@@ -106,6 +107,31 @@ with open(args.meta, 'w+') as out:
             el += z + " "
         out.write(str(k) + " " + el + '\n')
 print("categories meta write in " + args.meta)
+
+#count number of categories in claster
+categories_in_claster_counter = dict()
+for k, v in categories.items():
+    categories_in_claster_counter[k] = len(v)
+print("count categories in each claster")
+#count number of entities in each claster
+number_of_entity_in_claster = dict()
+with open(args.output, "r") as input:
+    for line in input:
+        cat = int(line)
+        if cat not in number_of_entity_in_claster.keys():
+            number_of_entity_in_claster[cat] = 0
+        number_of_entity_in_claster[cat] += 1
+number_of_entity_in_claster = {k: v for k, v in sorted(number_of_entity_in_claster.items(), key=lambda item: item[1], reverse=True)}
+print("count entities in each claster")
+
+categories_in_claster_counter[0] = 0
+with open(args.metameta, 'w+') as out:
+    out.write("claster - number of entities - number of categories\n")
+    for k, v in number_of_entity_in_claster.items():
+        el = str(k) + " - " + str(v) + " - " + str(categories_in_claster_counter[k]) + '\n'
+        out.write(el)
+print("meta info in " + args.metameta)
+
 '''
 print("start collect categories for each entity")
 # для каждого элемента собираем категории, которые используются вместе
