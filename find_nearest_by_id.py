@@ -39,7 +39,7 @@ def findCloseFromDifferentLang(num=10, vec_name="ent_embeds.npy",
         rank = sim[a, :].argsort()
         rank = rank[:num]
         for el in rank:
-            print(dic_2[el] + "\t")
+            print(dic_2[2*el+1] + "\t")
 
 
 parser = argparse.ArgumentParser(description='Find nearest entities in vector space by id')
