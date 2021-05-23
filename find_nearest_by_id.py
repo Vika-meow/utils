@@ -44,7 +44,7 @@ def findCloseFromDifferentLang(num=10, vec_name="ent_embeds.npy",
 
 parser = argparse.ArgumentParser(description='Find nearest entities in vector space by id')
 parser.add_argument('-p', '--path', help='You can use this argument if all files are in same directory', default="")
-parser.add_argument('-v', '--vectors', help='Vectors file', default="out_ae.npy")
+parser.add_argument('-v', '--vectors', help='Vectors file', default="ent_embeds.npy")
 parser.add_argument('-k1', '--kg1_ids', help='File with name and id of entity from kg1', default="kg1_ent_ids")
 parser.add_argument('-k2', '--kg2_ids', help='File with name and id of entity from kg1', default="kg2_ent_ids")
 parser.add_argument('-m', '--metric', help='Name of metric', default="cityblock")
