@@ -9,4 +9,4 @@ import matplotlib as mpl
 norm = mpl.colors.Normalize(vmin=0, vmax=750)
 cmap = cm.hot
 m = cm.ScalarMappable(norm=norm, cmap=cmap)
-print(type(m.to_rgba(100)))
+print(m.to_rgba(659))

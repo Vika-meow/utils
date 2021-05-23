@@ -10,4 +10,5 @@ test
 venv/
 .idea/
 *.png
+TransE.py
 
