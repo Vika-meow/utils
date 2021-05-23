@@ -32,11 +32,11 @@ def findCloseFromDifferentLang(num=10, vec_name="ent_embeds.npy",
     while (1):
         print("print entity id ")
         a = int(input())
-        if (a > number_of_entities) or (a%2 != 0):
+        if (a >= number_of_entities) or (a%2 != 0):
             print("id must be less than " + str(number_of_entities) + " and divide by 2")
             continue
         print(dic_1[a])
-        rank = sim[a, :].argsort()
+        rank = sim[a//2, :].argsort()
         rank = rank[:num]
         for el in rank:
             print(dic_2[2*el+1] + "\t")
